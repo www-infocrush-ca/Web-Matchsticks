@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public Button newGameButton;
 
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,7 +72,7 @@ public class GameManager : MonoBehaviour
         
     }
     IEnumerator NewGame(){
-        yield return ChangeDisplayMessage(" Welcome to Nim!", 4f);
+        yield return ChangeDisplayMessage(" Welcome to Game of Sticks(21)!", 4f);
         yield return new WaitForSeconds(1f);
         currentGameState = GameState.PickFirstPlayer;
     }
@@ -127,6 +129,7 @@ public class GameManager : MonoBehaviour
         button4.gameObject.SetActive(false);
         yield return ChangeDisplayMessage("Removing "+numMatches+" match(es)", 2f);
         rmg.RemoveMatches(numMatches);
+      
         SetRemainingMatchesText();
         currentGameState = GameState.ComputersTurn;
         
@@ -147,6 +150,7 @@ public class GameManager : MonoBehaviour
             int pickMatches = NimHelper.CalculateMatchestoRemove(rmg.GetRemainingMatches());
             yield return ChangeDisplayMessage("Computer picks "+pickMatches+ " match(es)", 2f);
             rmg.RemoveMatches(pickMatches);
+            PlaySound.GetInstance().playThisSoundEffect();
             yield return new WaitForSeconds(1f);
             SetRemainingMatchesText();
             currentGameState = GameState.PlayersTurn;

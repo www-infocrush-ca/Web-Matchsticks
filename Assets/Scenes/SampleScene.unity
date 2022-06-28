@@ -582,6 +582,7 @@ MonoBehaviour:
   button3: {fileID: 1093545241}
   button4: {fileID: 2130386497}
   newGameButton: {fileID: 756729811}
+  audioSource: {fileID: 0}
 --- !u!1 &686786257
 GameObject:
   m_ObjectHideFlags: 0
